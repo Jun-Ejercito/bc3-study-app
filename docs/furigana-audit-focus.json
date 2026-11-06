@@ -1,0 +1,110 @@
+{
+  "unique": 4398,
+  "byFile": {
+    "questions.json": 3735,
+    "flashcards.json": 2494,
+    "yoten_sections.json": 754,
+    "days.json": 4848,
+    "sets.json": 20,
+    "clusters.json": 404
+  },
+  "focusRenders": [
+    {
+      "s": "不適合品の数のように数えて得られる値を（　）、長さや重さのように測って得られる値を（　）という。",
+      "html": "<ruby>不適合品<rp>(</rp><rt>ふてきごうひん</rt><rp>)</rp></ruby>の<ruby>数<rp>(</rp><rt>かず</rt><rp>)</rp></ruby>のように<ruby>数<rp>(</rp><rt>かぞ</rt><rp>)</rp></ruby>えて<ruby>得<rp>(</rp><rt>え</rt><rp>)</rp></ruby>られる<ruby>値<rp>(</rp><rt>あたい</rt><rp>)</rp></ruby>を（　）、<ruby>長さ<rp>(</rp><rt>ながさ</rt><rp>)</rp></ruby>や<ruby>重さ<rp>(</rp><rt>おもさ</rt><rp>)</rp></ruby>のように<ruby>測<rp>(</rp><rt>はか</rt><rp>)</rp></ruby>って<ruby>得<rp>(</rp><rt>え</rt><rp>)</rp></ruby>られる<ruby>値<rp>(</rp><rt>あたい</rt><rp>)</rp></ruby>を（　）という。"
+    },
+    {
+      "s": "実績値",
+      "html": "<ruby>実績値<rp>(</rp><rt>じっせきち</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "標準値と実績値を比較する",
+      "html": "<ruby>標準<rp>(</rp><rt>ひょうじゅん</rt><rp>)</rp></ruby><ruby>値<rp>(</rp><rt>あたい</rt><rp>)</rp></ruby>と<ruby>実績値<rp>(</rp><rt>じっせきち</rt><rp>)</rp></ruby>を<ruby>比較<rp>(</rp><rt>ひかく</rt><rp>)</rp></ruby>する"
+    },
+    {
+      "s": "数えて",
+      "html": "<ruby>数<rp>(</rp><rt>かぞ</rt><rp>)</rp></ruby>えて"
+    },
+    {
+      "s": "数える",
+      "html": "<ruby>数<rp>(</rp><rt>かぞ</rt><rp>)</rp></ruby>える"
+    },
+    {
+      "s": "の数",
+      "html": "の<ruby>数<rp>(</rp><rt>かず</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "個数",
+      "html": "<ruby>個数<rp>(</rp><rt>こすう</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "計数値",
+      "html": "<ruby>計数値<rp>(</rp><rt>けいすうち</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "数量",
+      "html": "<ruby>数量<rp>(</rp><rt>すうりょう</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "数値",
+      "html": "<ruby>数値<rp>(</rp><rt>すうち</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "多数",
+      "html": "<ruby>多数<rp>(</rp><rt>たすう</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "数式",
+      "html": "<ruby>数式<rp>(</rp><rt>すうしき</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "指数",
+      "html": "<ruby>指数<rp>(</rp><rt>しすう</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "測って",
+      "html": "<ruby>測<rp>(</rp><rt>はか</rt><rp>)</rp></ruby>って"
+    },
+    {
+      "s": "図る",
+      "html": "<ruby>図<rp>(</rp><rt>はか</rt><rp>)</rp></ruby>る"
+    },
+    {
+      "s": "図示",
+      "html": "<ruby>図示<rp>(</rp><rt>ずし</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "不良品",
+      "html": "<ruby>不良品<rp>(</rp><rt>ふりょうひん</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "不適合品",
+      "html": "<ruby>不適合品<rp>(</rp><rt>ふてきごうひん</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "良品",
+      "html": "<ruby>良品<rp>(</rp><rt>りょうひん</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "長さ",
+      "html": "<ruby>長さ<rp>(</rp><rt>ながさ</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "重さ",
+      "html": "<ruby>重さ<rp>(</rp><rt>おもさ</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "適合品数÷検査数",
+      "html": "<ruby>適合品数<rp>(</rp><rt>てきごうひんすう</rt><rp>)</rp></ruby>÷<ruby>検査数<rp>(</rp><rt>けんさすう</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "労働者数",
+      "html": "<ruby>労働者数<rp>(</rp><rt>ろうどうしゃすう</rt><rp>)</rp></ruby>"
+    },
+    {
+      "s": "値",
+      "html": "<ruby>値<rp>(</rp><rt>あたい</rt><rp>)</rp></ruby>"
+    }
+  ],
+  "flags": []
+}
