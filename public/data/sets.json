@@ -1,0 +1,67 @@
+[
+  {
+    "id": "R5後",
+    "era": "令和5年度",
+    "term": "後期",
+    "label_ja": "令和5年度後期",
+    "label_en": "FY2023 Autumn (R5後)",
+    "file_q": "f1.pdf",
+    "file_a": "f2.pdf",
+    "file_txt": "f1.txt",
+    "questions": 40,
+    "pass_mark": 24,
+    "minutes": 110
+  },
+  {
+    "id": "R6前",
+    "era": "令和6年度",
+    "term": "前期",
+    "label_ja": "令和6年度前期",
+    "label_en": "FY2024 Spring (R6前)",
+    "file_q": "f3.pdf",
+    "file_a": "f4.pdf",
+    "file_txt": "f3.txt",
+    "questions": 40,
+    "pass_mark": 24,
+    "minutes": 110
+  },
+  {
+    "id": "R6後",
+    "era": "令和6年度",
+    "term": "後期",
+    "label_ja": "令和6年度後期",
+    "label_en": "FY2024 Autumn (R6後)",
+    "file_q": "f5.pdf",
+    "file_a": "f6.pdf",
+    "file_txt": "f5.txt",
+    "questions": 40,
+    "pass_mark": 24,
+    "minutes": 110
+  },
+  {
+    "id": "R7前",
+    "era": "令和7年度",
+    "term": "前期",
+    "label_ja": "令和7年度前期",
+    "label_en": "FY2025 Spring (R7前)",
+    "file_q": "f7.pdf",
+    "file_a": "f8.pdf",
+    "file_txt": "f7.txt",
+    "questions": 40,
+    "pass_mark": 24,
+    "minutes": 110
+  },
+  {
+    "id": "R7後",
+    "era": "令和7年度",
+    "term": "後期",
+    "label_ja": "令和7年度後期",
+    "label_en": "FY2025 Autumn (R7後)",
+    "file_q": "f9.pdf",
+    "file_a": "f10.pdf",
+    "file_txt": "f9.txt",
+    "questions": 40,
+    "pass_mark": 24,
+    "minutes": 110
+  }
+]

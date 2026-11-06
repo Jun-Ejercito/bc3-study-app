@@ -1,0 +1,35 @@
+{
+  "stem_choice_issues": [
+    {
+      "id": "R5後-7",
+      "issue": "choice_fragment_missing",
+      "choice": "エ",
+      "frag": "躾（しつけ）"
+    },
+    {
+      "id": "R6前-32",
+      "issue": "image_only_page",
+      "action": "use_crop",
+      "severity_ok": true
+    },
+    {
+      "id": "R6前-33",
+      "issue": "image_only_page",
+      "action": "use_crop",
+      "severity_ok": true
+    },
+    {
+      "id": "R6前-34",
+      "issue": "image_only_page",
+      "action": "use_crop",
+      "severity_ok": true
+    },
+    {
+      "id": "R6前-39",
+      "issue": "choice_fragment_missing",
+      "choice": "ア",
+      "frag": "環境の恵沢（けいたく）の享受（きょうじゅ）と継承"
+    }
+  ],
+  "formula_flags": []
+}

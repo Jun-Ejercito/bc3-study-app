@@ -1,0 +1,181 @@
+{
+  "built_at": "2026-11-06T11:43:43.712350+09:00",
+  "timezone_note": "Asia/Tokyo",
+  "scope": "Five official BC3 生産管理オペレーション 3級 exams only (R5後/R6前/R6後/R7前/R7後) = 200 questions.",
+  "sets": [
+    {
+      "id": "R5後",
+      "era": "令和5年度",
+      "term": "後期",
+      "label_ja": "令和5年度後期",
+      "label_en": "FY2023 Autumn (R5後)",
+      "file_q": "f1.pdf",
+      "file_a": "f2.pdf",
+      "file_txt": "f1.txt",
+      "questions": 40,
+      "pass_mark": 24,
+      "minutes": 110
+    },
+    {
+      "id": "R6前",
+      "era": "令和6年度",
+      "term": "前期",
+      "label_ja": "令和6年度前期",
+      "label_en": "FY2024 Spring (R6前)",
+      "file_q": "f3.pdf",
+      "file_a": "f4.pdf",
+      "file_txt": "f3.txt",
+      "questions": 40,
+      "pass_mark": 24,
+      "minutes": 110
+    },
+    {
+      "id": "R6後",
+      "era": "令和6年度",
+      "term": "後期",
+      "label_ja": "令和6年度後期",
+      "label_en": "FY2024 Autumn (R6後)",
+      "file_q": "f5.pdf",
+      "file_a": "f6.pdf",
+      "file_txt": "f5.txt",
+      "questions": 40,
+      "pass_mark": 24,
+      "minutes": 110
+    },
+    {
+      "id": "R7前",
+      "era": "令和7年度",
+      "term": "前期",
+      "label_ja": "令和7年度前期",
+      "label_en": "FY2025 Spring (R7前)",
+      "file_q": "f7.pdf",
+      "file_a": "f8.pdf",
+      "file_txt": "f7.txt",
+      "questions": 40,
+      "pass_mark": 24,
+      "minutes": 110
+    },
+    {
+      "id": "R7後",
+      "era": "令和7年度",
+      "term": "後期",
+      "label_ja": "令和7年度後期",
+      "label_en": "FY2025 Autumn (R7後)",
+      "file_q": "f9.pdf",
+      "file_a": "f10.pdf",
+      "file_txt": "f9.txt",
+      "questions": 40,
+      "pass_mark": 24,
+      "minutes": 110
+    }
+  ],
+  "sources": {
+    "questions_text": "/workspace/bc3/qs2.json (from /workspace/exams/f1,f3,f5,f7,f9.txt + PDFs)",
+    "answers": "/workspace/bc3/d_*.txt plus R6前-32/33/34 from /workspace/exams/f4.pdf 正解表",
+    "explanations_jp": "/workspace/days/out/DayNN_解説.docx",
+    "explanations_en": "/workspace/bc3/data/{set}.py",
+    "day_mapping": "/workspace/days/final.json + qs.json",
+    "recall_activities": "/workspace/days/content.py",
+    "yoten": "/workspace/bc3/jp/c/*.txt",
+    "clusters": "/workspace/bc3/groups.py",
+    "furigana": "/workspace/days/rdict.json + COMP overrides in days/lib.py",
+    "lesson_docs": "/workspace/days/out/DayNN_*.docx",
+    "source_books": [
+      "/workspace/bc_source.pdf",
+      "/workspace/bc_source2.pdf"
+    ]
+  },
+  "hashes": {
+    "qs2.json": "130fa6463a932d64",
+    "final.json": "8113bc357e836502",
+    "content.py": "04442612ff5261f9"
+  },
+  "checks": {
+    "unique_question_ids": true,
+    "question_count": 200,
+    "expected_count": 200,
+    "per_set": {
+      "R5後": 40,
+      "R6前": 40,
+      "R6後": 40,
+      "R7前": 40,
+      "R7後": 40
+    },
+    "answers_present": true,
+    "missing_answers": [],
+    "with_day_mapping": 200,
+    "with_jp_explanation": 200,
+    "with_en_explanation": 200,
+    "needs_image_flagged": [
+      "R5後-17",
+      "R5後-31",
+      "R5後-32",
+      "R6前-10",
+      "R6前-11",
+      "R6前-32",
+      "R6後-9",
+      "R6後-26",
+      "R6後-40",
+      "R7前-10",
+      "R7前-16",
+      "R7前-30",
+      "R7前-35",
+      "R7前-40",
+      "R7後-11",
+      "R7後-20",
+      "R7後-32",
+      "R7後-33"
+    ],
+    "image_crops_available": [
+      "R5後-17",
+      "R5後-31",
+      "R5後-32",
+      "R6前-10",
+      "R6前-11",
+      "R6前-32",
+      "R6前-33",
+      "R6前-34",
+      "R6後-9",
+      "R6後-26",
+      "R6後-40",
+      "R7前-10",
+      "R7前-16",
+      "R7前-30",
+      "R7前-35",
+      "R7前-40",
+      "R7後-11",
+      "R7後-20",
+      "R7後-32",
+      "R7後-33"
+    ],
+    "flashcard_count": 480,
+    "cluster_count": 64,
+    "days_with_yoten": 23,
+    "gaps": [],
+    "r6mae_32_34_answer_source": "official 正解表 f4.pdf visual read",
+    "r6mae_32_34_answers": {
+      "32": "ア",
+      "33": "エ",
+      "34": "エ"
+    },
+    "image_unavailable": [],
+    "tests": "16/16 pass (node --test)",
+    "dev_server": {
+      "url": "http://127.0.0.1:5173/",
+      "pid": 614219,
+      "port": 5173
+    },
+    "image_manifest": "public/data/image_manifest.json",
+    "image_crop_count": 20,
+    "cluster_言い換え": 43,
+    "review_days_with_yoten": 5,
+    "explanation_debris": 0,
+    "explanation_extractor": "scripts/extract_docx_text.py (w:t + EQ base)"
+  },
+  "limitations": [
+    "Furigana in the UI uses a reviewed dictionary + compound overrides; not claimed flawless.",
+    "要点↔day mapping comes from Day banner ranges; review/mock days re-show earlier 要点.",
+    "R6前 p.11 is a scanned raster page — Q32–34 crops are from that image.",
+    "No cloud sync. Progress is localStorage only; export/import JSON for backup."
+  ]
+}

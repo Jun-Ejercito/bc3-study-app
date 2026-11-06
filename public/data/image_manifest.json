@@ -1,0 +1,495 @@
+{
+  "dpi": 220,
+  "source_note": "Crops from question PDFs only (f1/f3/f5/f7/f9). Answer keys are separate PDFs.",
+  "items": {
+    "R5後-17": {
+      "status": "ok",
+      "file": "img/questions/R5後-17.png",
+      "preview": "img/questions/R5後-17_preview.png",
+      "pdf": "f1.pdf",
+      "parts": [
+        {
+          "page": 6,
+          "bbox_pts": [
+            72.22,
+            82.54,
+            555.32,
+            396.45
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        960
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R5後-31": {
+      "status": "ok",
+      "file": "img/questions/R5後-31.png",
+      "preview": "img/questions/R5後-31_preview.png",
+      "pdf": "f1.pdf",
+      "parts": [
+        {
+          "page": 9,
+          "bbox_pts": [
+            72.22,
+            319.93,
+            555.32,
+            805.92
+          ],
+          "pixel_y0": 0,
+          "pixel_h": 1486
+        }
+      ],
+      "pixel_size": [
+        1545,
+        1486
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF | trimmed empty next-page header fragment",
+      "contains_answer": false
+    },
+    "R5後-32": {
+      "status": "ok",
+      "file": "img/questions/R5後-32.png",
+      "preview": "img/questions/R5後-32_preview.png",
+      "pdf": "f1.pdf",
+      "parts": [
+        {
+          "page": 10,
+          "bbox_pts": [
+            72.22,
+            81.58,
+            555.32,
+            307.05
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        690
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R6前-10": {
+      "status": "ok",
+      "file": "img/questions/R6前-10.png",
+      "preview": "img/questions/R6前-10_preview.png",
+      "pdf": "f3.pdf",
+      "parts": [
+        {
+          "page": 5,
+          "bbox_pts": [
+            72.22,
+            81.58,
+            555.32,
+            308.01
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        693
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R6前-11": {
+      "status": "ok",
+      "file": "img/questions/R6前-11.png",
+      "preview": "img/questions/R6前-11_preview.png",
+      "pdf": "f3.pdf",
+      "parts": [
+        {
+          "page": 5,
+          "bbox_pts": [
+            72.22,
+            306.01,
+            555.32,
+            805.92
+          ],
+          "pixel_y0": 0,
+          "pixel_h": 1528
+        }
+      ],
+      "pixel_size": [
+        1545,
+        1528
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF | trimmed empty next-page header fragment",
+      "contains_answer": false
+    },
+    "R6前-32": {
+      "status": "ok",
+      "file": "img/questions/R6前-32.png",
+      "preview": "img/questions/R6前-32_preview.png",
+      "pdf": "f3.pdf",
+      "parts": [
+        {
+          "page": 11,
+          "bbox_pts": [
+            14.4,
+            79.2,
+            576.0,
+            394.04
+          ],
+          "pixel_bbox": [
+            44,
+            242,
+            1760,
+            1204
+          ],
+          "dpi": 220
+        }
+      ],
+      "pixel_size": [
+        1716,
+        962
+      ],
+      "note": "Scanned page; Q32 only through options ア–エ before 問題33",
+      "contains_answer": false
+    },
+    "R6後-9": {
+      "status": "ok",
+      "file": "img/questions/R6後-9.png",
+      "preview": "img/questions/R6後-9_preview.png",
+      "pdf": "f5.pdf",
+      "parts": [
+        {
+          "page": 4,
+          "bbox_pts": [
+            72.22,
+            81.58,
+            555.32,
+            307.05
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        690
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R6後-26": {
+      "status": "ok",
+      "file": "img/questions/R6後-26.png",
+      "preview": "img/questions/R6後-26_preview.png",
+      "pdf": "f5.pdf",
+      "parts": [
+        {
+          "page": 8,
+          "bbox_pts": [
+            72.22,
+            349.81,
+            555.32,
+            500.75
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        463
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R6後-40": {
+      "status": "ok",
+      "file": "img/questions/R6後-40.png",
+      "preview": "img/questions/R6後-40_preview.png",
+      "pdf": "f5.pdf",
+      "parts": [
+        {
+          "page": 12,
+          "bbox_pts": [
+            72.22,
+            81.58,
+            555.32,
+            805.92
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        2214
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7前-10": {
+      "status": "ok",
+      "file": "img/questions/R7前-10.png",
+      "preview": "img/questions/R7前-10_preview.png",
+      "pdf": "f7.pdf",
+      "parts": [
+        {
+          "page": 5,
+          "bbox_pts": [
+            72.22,
+            81.58,
+            555.32,
+            485.87
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        1236
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7前-16": {
+      "status": "ok",
+      "file": "img/questions/R7前-16.png",
+      "preview": "img/questions/R7前-16_preview.png",
+      "pdf": "f7.pdf",
+      "parts": [
+        {
+          "page": 7,
+          "bbox_pts": [
+            72.22,
+            82.54,
+            555.32,
+            396.45
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        960
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7前-30": {
+      "status": "ok",
+      "file": "img/questions/R7前-30.png",
+      "preview": "img/questions/R7前-30_preview.png",
+      "pdf": "f7.pdf",
+      "parts": [
+        {
+          "page": 10,
+          "bbox_pts": [
+            72.22,
+            230.5,
+            555.32,
+            515.75
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        872
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7前-35": {
+      "status": "ok",
+      "file": "img/questions/R7前-35.png",
+      "preview": "img/questions/R7前-35_preview.png",
+      "pdf": "f7.pdf",
+      "parts": [
+        {
+          "page": 12,
+          "bbox_pts": [
+            72.22,
+            82.54,
+            555.32,
+            457.07
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        1145
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7前-40": {
+      "status": "ok",
+      "file": "img/questions/R7前-40.png",
+      "preview": "img/questions/R7前-40_preview.png",
+      "pdf": "f7.pdf",
+      "parts": [
+        {
+          "page": 13,
+          "bbox_pts": [
+            72.22,
+            513.75,
+            555.32,
+            805.92
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        894
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7後-11": {
+      "status": "ok",
+      "file": "img/questions/R7後-11.png",
+      "preview": "img/questions/R7後-11_preview.png",
+      "pdf": "f9.pdf",
+      "parts": [
+        {
+          "page": 4,
+          "bbox_pts": [
+            72.22,
+            403.57,
+            555.32,
+            805.92
+          ],
+          "pixel_y0": 0,
+          "pixel_h": 1230
+        }
+      ],
+      "pixel_size": [
+        1545,
+        1230
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF | trimmed empty next-page header fragment",
+      "contains_answer": false
+    },
+    "R7後-20": {
+      "status": "ok",
+      "file": "img/questions/R7後-20.png",
+      "preview": "img/questions/R7後-20_preview.png",
+      "pdf": "f9.pdf",
+      "parts": [
+        {
+          "page": 7,
+          "bbox_pts": [
+            72.22,
+            82.54,
+            555.32,
+            396.45
+          ]
+        }
+      ],
+      "pixel_size": [
+        1477,
+        960
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7後-32": {
+      "status": "ok",
+      "file": "img/questions/R7後-32.png",
+      "preview": "img/questions/R7後-32_preview.png",
+      "pdf": "f9.pdf",
+      "parts": [
+        {
+          "page": 10,
+          "bbox_pts": [
+            74.86,
+            81.58,
+            555.32,
+            439.17
+          ]
+        }
+      ],
+      "pixel_size": [
+        1469,
+        1093
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF",
+      "contains_answer": false
+    },
+    "R7後-33": {
+      "status": "ok",
+      "file": "img/questions/R7後-33.png",
+      "preview": "img/questions/R7後-33_preview.png",
+      "pdf": "f9.pdf",
+      "parts": [
+        {
+          "page": 10,
+          "bbox_pts": [
+            72.22,
+            437.17,
+            555.32,
+            805.92
+          ],
+          "pixel_y0": 0,
+          "pixel_h": 1128
+        }
+      ],
+      "pixel_size": [
+        1545,
+        1128
+      ],
+      "note": "Whole-question crop; options included; answer key not in source PDF | trimmed empty next-page header fragment",
+      "contains_answer": false
+    },
+    "R6前-33": {
+      "status": "ok",
+      "file": "img/questions/R6前-33.png",
+      "preview": "img/questions/R6前-33_preview.png",
+      "pdf": "f3.pdf",
+      "parts": [
+        {
+          "page": 11,
+          "bbox_pts": [
+            14.4,
+            394.04,
+            576.0,
+            588.44
+          ],
+          "pixel_bbox": [
+            44,
+            1204,
+            1760,
+            1798
+          ],
+          "dpi": 220
+        }
+      ],
+      "pixel_size": [
+        1716,
+        594
+      ],
+      "note": "Scanned page image-only; whole question crop",
+      "contains_answer": false
+    },
+    "R6前-34": {
+      "status": "ok",
+      "file": "img/questions/R6前-34.png",
+      "preview": "img/questions/R6前-34_preview.png",
+      "pdf": "f3.pdf",
+      "parts": [
+        {
+          "page": 11,
+          "bbox_pts": [
+            14.4,
+            588.44,
+            576.0,
+            774.0
+          ],
+          "pixel_bbox": [
+            44,
+            1798,
+            1760,
+            2365
+          ],
+          "dpi": 220
+        }
+      ],
+      "pixel_size": [
+        1716,
+        567
+      ],
+      "note": "Scanned page image-only; whole question crop",
+      "contains_answer": false
+    }
+  }
+}
