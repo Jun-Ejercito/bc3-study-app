@@ -5,8 +5,8 @@ import { assetUrl } from '../lib/assets.js';
 export function renderExams(root, { data, state, go, params, refreshChip }) {
   const view = params.view || 'set';
   root.innerHTML = `
-    <h2>過去問 Exams</h2>
-    <p class="muted">Four views · shared history by question id · answers hidden until check</p>
+    <h2>過去問</h2>
+    <p class="muted">セット・日・章・同趣旨の4つの見方。解答履歴は共通。答えは確認するまで表示しません。</p>
     <div class="tabs" role="tablist">
       ${[['set','セット別'],['day','日別'],['chapter','章別'],['cluster','同趣旨クラスタ']].map(([v,l]) =>
         `<button type="button" data-view="${v}" aria-selected="${view===v}">${l}</button>`).join('')}
@@ -26,9 +26,9 @@ function renderBySet(panel, data, state, go, params, refreshChip) {
     const qs = data.questions.filter((q) => q.set === params.set);
     const meta = data.sets.find((s) => s.id === params.set);
     panel.innerHTML = `
-      <button class="btn ghost" data-back>← Sets</button>
+      <button class="btn ghost" data-back>← セット一覧</button>
       <h3>${applyFurigana(meta.label_ja, data.furigana)}</h3>
-      <p class="muted">${meta.label_en} · ${meta.minutes}分 · 合格目安 ${meta.pass_mark}/40</p>
+      <p class="muted">${meta.minutes}分 · 合格目安 ${meta.pass_mark}／40問</p>
       <div class="grid">${qs.map((q) => qTile(q, state)).join('')}</div>`;
     panel.querySelector('[data-back]').onclick = () => go('exams', { view: 'set' });
     panel.querySelectorAll('[data-qid]').forEach((b) => b.onclick = () => go('exams', { view: 'set', set: params.set, q: b.dataset.qid }));
@@ -38,8 +38,7 @@ function renderBySet(panel, data, state, go, params, refreshChip) {
     const tried = data.questions.filter((q) => q.set === s.id && state.questions[q.id]?.attempts).length;
     return `<button type="button" class="set-tile" data-set="${s.id}">
       <div class="n">${applyFurigana(s.label_ja, data.furigana)}</div>
-      <div class="muted">${s.label_en}</div>
-      <span class="badge">${tried}/40 tried</span>
+      <span class="badge">${tried}／40問 解答済み</span>
     </button>`;
   }).join('')}</div>`;
   panel.querySelectorAll('[data-set]').forEach((b) => b.onclick = () => go('exams', { view: 'set', set: b.dataset.set }));
@@ -51,18 +50,19 @@ function renderByDay(panel, data, state, go, params, refreshChip) {
     const d = data.dayByN[+params.day];
     const qs = (d?.question_ids || []).map((id) => data.qById[id]).filter(Boolean);
     panel.innerHTML = `
-      <button class="btn ghost" data-back>← Days</button>
+      <button class="btn ghost" data-back>← 日別一覧</button>
       <h3>Day ${String(params.day).padStart(2,'0')}</h3>
-      <div class="grid">${qs.map((q) => qTile(q, state)).join('') || '<p class="muted">No mapped questions</p>'}</div>`;
+      <div class="grid">${qs.map((q) => qTile(q, state)).join('') || '<p class="muted">この日に割り当てられた問題はありません</p>'}</div>`;
     panel.querySelector('[data-back]').onclick = () => go('exams', { view: 'day' });
     panel.querySelectorAll('[data-qid]').forEach((b) => b.onclick = () => go('exams', { view: 'day', day: params.day, q: b.dataset.qid }));
     return;
   }
+  const kindJa = { lesson: '学習', review: '復習', mock: '模擬' };
   panel.innerHTML = `<div class="grid">${data.days.map((d) =>
     `<button type="button" class="day-tile" data-day="${d.day}">
       <div class="n">Day ${String(d.day).padStart(2,'0')}</div>
-      <span class="badge ${d.kind}">${d.kind}</span>
-      <span class="muted">${d.question_ids.length}Q</span>
+      <span class="badge ${d.kind}">${kindJa[d.kind] || d.kind}</span>
+      <span class="muted">${d.question_ids.length}問</span>
     </button>`).join('')}</div>`;
   panel.querySelectorAll('[data-day]').forEach((b) => b.onclick = () => go('exams', { view: 'day', day: b.dataset.day }));
 }
@@ -77,7 +77,7 @@ function renderByChapter(panel, data, state, go, params, refreshChip) {
   if (params.chapter) {
     const qs = chapters[params.chapter] || [];
     panel.innerHTML = `
-      <button class="btn ghost" data-back>← Chapters</button>
+      <button class="btn ghost" data-back>← 章別一覧</button>
       <h3>${applyFurigana(params.chapter, data.furigana)}</h3>
       <div class="grid">${qs.map((q) => qTile(q, state)).join('')}</div>`;
     panel.querySelector('[data-back]').onclick = () => go('exams', { view: 'chapter' });
@@ -87,7 +87,7 @@ function renderByChapter(panel, data, state, go, params, refreshChip) {
   panel.innerHTML = `<div class="grid">${Object.entries(chapters).map(([k, qs]) =>
     `<button type="button" class="set-tile" data-ch="${escapeHtml(k)}">
       <div class="n">${applyFurigana(k, data.furigana)}</div>
-      <span class="badge">${qs.length}Q</span>
+      <span class="badge">${qs.length}問</span>
     </button>`).join('')}</div>`;
   panel.querySelectorAll('[data-ch]').forEach((b) => b.onclick = () => go('exams', { view: 'chapter', chapter: b.dataset.ch }));
 }
@@ -98,9 +98,9 @@ function renderByCluster(panel, data, state, go, params, refreshChip) {
     const c = data.clusters.find((x) => x.id === params.cluster);
     const qs = (c?.question_ids || []).map((id) => data.qById[id]).filter(Boolean);
     panel.innerHTML = `
-      <button class="btn ghost" data-back>← Clusters</button>
+      <button class="btn ghost" data-back>← 同趣旨一覧</button>
       <h3>${applyFurigana(c?.name || '', data.furigana)}</h3>
-      <p class="muted">Same verified concept · source questions only (no authored fillers)</p>
+      <p class="muted">同じ検証済み概念を問う本番の過去問のみです</p>
       <div class="grid">${qs.map((q) => qTile(q, state)).join('')}</div>`;
     panel.querySelector('[data-back]').onclick = () => go('exams', { view: 'cluster' });
     panel.querySelectorAll('[data-qid]').forEach((b) => b.onclick = () => go('exams', { view: 'cluster', cluster: params.cluster, q: b.dataset.qid }));
@@ -112,7 +112,7 @@ function renderByCluster(panel, data, state, go, params, refreshChip) {
     .sort((a, b) => b.question_ids.length - a.question_ids.length)
     .map((c) => `<button type="button" class="set-tile" data-cl="${escapeHtml(c.id)}">
       <div class="n">${applyFurigana(c.name, data.furigana)}</div>
-      <span class="badge">言い換え ${c.question_ids.length}Q</span>
+      <span class="badge">言い換え ${c.question_ids.length}問</span>
       <div class="muted">${escapeHtml(c.category || '')}</div>
     </button>`).join('')}</div>`;
   panel.querySelectorAll('[data-cl]').forEach((b) => b.onclick = () => go('exams', { view: 'cluster', cluster: b.dataset.cl }));
@@ -124,7 +124,7 @@ function qTile(q, state) {
   return `<button type="button" class="day-tile" data-qid="${q.id}">
     <div class="n">${q.id} <span class="star">${mark}</span></div>
     <div class="muted">${escapeHtml((q.topic || '').slice(0, 28))}</div>
-    ${st ? `<span class="badge">${st.correct}/${st.attempts}</span>` : '<span class="badge">new</span>'}
+    ${st ? `<span class="badge">${st.correct}／${st.attempts}回</span>` : '<span class="badge">未解答</span>'}
   </button>`;
 }
 
