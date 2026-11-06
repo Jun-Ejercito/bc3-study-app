@@ -78,3 +78,18 @@ describe('migration security invariants (static)', () => {
     assert.doesNotMatch(sql, /grant .* on public\.progress_events to anon/i);
   });
 });
+
+describe('harden public RPC invoker migration (static)', () => {
+  const harden = readFileSync(
+    join(root, 'supabase/migrations/20261106065807_harden_public_rpc_invoker.sql'),
+    'utf8',
+  );
+
+  it('public wrappers are security invoker; bodies are private security definer', () => {
+    assert.match(harden, /create or replace function public\.create_class\(p_title text\)[\s\S]*?security invoker/i);
+    assert.match(harden, /create or replace function public\.add_class_student\([\s\S]*?security invoker/i);
+    assert.match(harden, /create or replace function private\.create_class\(p_title text\)[\s\S]*?security definer/i);
+    assert.match(harden, /create or replace function private\.add_class_student\([\s\S]*?security definer/i);
+    assert.match(harden, /revoke all on function private\.grant_teacher\(uuid, text\) from public, anon, authenticated/i);
+  });
+});

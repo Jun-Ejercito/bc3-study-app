@@ -81,8 +81,16 @@ export function createSupabaseSyncAdapter() {
     async signUp({ email, password }) {
       if (!email || !password) throw new Error('email and password required');
       if (password.length < 8) throw new Error('password must be at least 8 characters');
-      // May trigger confirmation email depending on project Auth settings — parent must review.
-      const { data, error } = await sb.auth.signUp({ email, password });
+      // Redirect after confirm must be allowlisted in Dashboard URL Configuration.
+      // Does not create users or send mail until the user submits the form.
+      const redirectTo = typeof location !== 'undefined'
+        ? `${location.origin}${location.pathname || '/'}#/auth`
+        : 'https://jun-ejercito.github.io/bc3-study-app/#/auth';
+      const { data, error } = await sb.auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: redirectTo },
+      });
       if (error) throw error;
       return {
         studentId: data.user?.id || null,

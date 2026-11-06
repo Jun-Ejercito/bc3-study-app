@@ -44,3 +44,39 @@ select private.grant_teacher('<JUN_AUTH_UID>'::uuid, 'manual verified owner');
 ## Feature gate
 
 Guest study features remain fully available without login. Without keys the app stays local-only; with live keys, login/sync work; teacher create/add works only after grant_teacher.
+
+
+## Live Auth posture (read-only public probe)
+
+Probed via sanctioned GoTrue public endpoint `GET /auth/v1/settings` with anon key
+([Auth OpenAPI `/settings`](https://github.com/supabase/auth/blob/master/openapi.yaml)):
+
+| field | value | meaning |
+|-------|-------|---------|
+| `disable_signup` | `false` | Signup open |
+| `mailer_autoconfirm` | `false` | **Email confirmation required** (not silently disabled) |
+| `external.email` | `true` | Email/password on |
+| OAuth providers | all false | Email only |
+
+**Redirect / Site URL:** not returned by `/settings`. No MCP Auth-config tool exists in
+`user-Supabase` (32 tools verified). Configure manually:
+
+- Dashboard: https://supabase.com/dashboard/project/wtgvcdxuxebzgdfrrfbj/auth/url-configuration  
+  (docs: https://supabase.com/docs/guides/auth/redirect-urls)
+- Site URL: `https://jun-ejercito.github.io/bc3-study-app/`
+- Redirect allowlist: `https://jun-ejercito.github.io/bc3-study-app/**` and `http://127.0.0.1:5173/**`
+
+**Built-in SMTP restriction** ([docs](https://supabase.com/docs/guides/auth/auth-smtp)):
+without custom SMTP, Auth only delivers to **organization team member emails**.
+Other addresses fail with “Email address not authorized.” Jun must sign up with an
+email that is already on the Asean-Education org team, **or** owner must configure
+custom SMTP (paid/provider — ask before upgrades) before a non-team inbox works.
+
+App sets `emailRedirectTo` to `#/auth` on signup; allowlist still required.
+
+## SECURITY DEFINER posture
+
+- `public.create_class` / `public.add_class_student` → **SECURITY INVOKER** wrappers
+- Bodies: `private.create_class` / `private.add_class_student` → SECURITY DEFINER
+- `private.grant_teacher` → service_role only
+- Migration: `supabase/migrations/20261106065807_harden_public_rpc_invoker.sql` (CLI `migration new`)
