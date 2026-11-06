@@ -1,6 +1,14 @@
 import { applyFurigana, escapeHtml } from '../lib/furigana.js';
 import { recordQuestion } from '../lib/storage.js';
 import { assetUrl } from '../lib/assets.js';
+import {
+  resolveClusterDayFilter,
+  groupClustersByDay,
+  formatRelatedDays,
+  clusterListQuery,
+  curriculumDays,
+  daysForCluster,
+} from '../lib/clusterDays.js';
 
 export function renderExams(root, { data, state, go, params, refreshChip }) {
   const view = params.view || 'set';
@@ -93,30 +101,80 @@ function renderByChapter(panel, data, state, go, params, refreshChip) {
 }
 
 function renderByCluster(panel, data, state, go, params, refreshChip) {
-  if (params.cluster && params.q) return renderQuestion(panel, data, state, params, refreshChip, () => go('exams', { view: 'cluster', cluster: params.cluster }));
+  const dayFilter = resolveClusterDayFilter(params);
+  const listQuery = () => clusterListQuery(dayFilter);
+
+  if (params.cluster && params.q) {
+    return renderQuestion(panel, data, state, params, refreshChip, () =>
+      go('exams', { ...listQuery(), cluster: params.cluster }),
+    );
+  }
   if (params.cluster) {
     const c = data.clusters.find((x) => x.id === params.cluster);
     const qs = (c?.question_ids || []).map((id) => data.qById[id]).filter(Boolean);
+    const relatedDays = c ? daysForCluster(c, data.days) : [];
+    const relatedLabel = formatRelatedDays(relatedDays, dayFilter === 'all' ? null : dayFilter);
     panel.innerHTML = `
       <button class="btn ghost" data-back>← 同趣旨一覧</button>
       <h3>${applyFurigana(c?.name || '', data.furigana)}</h3>
-      <p class="muted">同じ検証済み概念を問う本番の過去問のみです</p>
+      <p class="muted">同じ検証済み概念を問う本番の過去問のみです${relatedLabel ? ` · ${escapeHtml(relatedLabel)}` : ''}</p>
       <div class="grid">${qs.map((q) => qTile(q, state)).join('')}</div>`;
-    panel.querySelector('[data-back]').onclick = () => go('exams', { view: 'cluster' });
-    panel.querySelectorAll('[data-qid]').forEach((b) => b.onclick = () => go('exams', { view: 'cluster', cluster: params.cluster, q: b.dataset.qid }));
+    panel.querySelector('[data-back]').onclick = () => go('exams', listQuery());
+    panel.querySelectorAll('[data-qid]').forEach((b) =>
+      b.onclick = () => go('exams', { ...listQuery(), cluster: params.cluster, q: b.dataset.qid }),
+    );
     return;
   }
-  panel.innerHTML = `<p class="muted">実際の過去問どうしで同じ検証済み概念を問う言い換えクラスタのみ（単独・曖昧ラベルは除外）</p>
-    <div class="grid">${data.clusters
-    .filter((c) => c.kind === '言い換え' && c.question_ids.length >= 2)
-    .sort((a, b) => b.question_ids.length - a.question_ids.length)
-    .map((c) => `<button type="button" class="set-tile" data-cl="${escapeHtml(c.id)}">
-      <div class="n">${applyFurigana(c.name, data.furigana)}</div>
-      <span class="badge">言い換え ${c.question_ids.length}問</span>
-      <div class="muted">${escapeHtml(c.category || '')}</div>
-    </button>`).join('')}</div>`;
-  panel.querySelectorAll('[data-cl]').forEach((b) => b.onclick = () => go('exams', { view: 'cluster', cluster: b.dataset.cl }));
+
+  const groups = groupClustersByDay(data.clusters, data.days, dayFilter);
+  const dayOpts = curriculumDays(data.days);
+  const selectHtml = `<label class="row" style="gap:.4rem;margin:.35rem 0 .55rem;">日程
+    <select id="cluster-day" aria-label="クラスタの日程">
+      <option value="all" ${dayFilter === 'all' ? 'selected' : ''}>全日程</option>
+      ${dayOpts.map((d) => {
+        const n = String(d.day).padStart(2, '0');
+        const kind = d.kind === 'review' ? '復習' : '学習';
+        const theme = (d.theme || '').slice(0, 22);
+        return `<option value="${d.day}" ${dayFilter === d.day ? 'selected' : ''}>Day${n} ${kind}${theme ? ` · ${escapeHtml(theme)}` : ''}</option>`;
+      }).join('')}
+    </select>
+  </label>`;
+
+  let body;
+  if (dayFilter !== 'all' && (!groups.length || !groups[0].clusters.length)) {
+    body = `<div class="card"><p>この日に割り当てられた同趣旨クラスタはありません。</p></div>`;
+  } else {
+    body = groups.map(({ day, dayMeta, clusters }) => {
+      const n = String(day).padStart(2, '0');
+      const kind = dayMeta?.kind === 'review' ? '復習' : '学習';
+      const theme = (dayMeta?.theme || '').slice(0, 36);
+      const tiles = clusters.map(({ cluster: c, relatedDays }) => {
+        const rel = formatRelatedDays(relatedDays, day);
+        return `<button type="button" class="set-tile" data-cl="${escapeHtml(c.id)}">
+          <div class="n">${applyFurigana(c.name, data.furigana)}</div>
+          <span class="badge">言い換え ${c.question_ids.length}問</span>
+          <div class="muted">${escapeHtml(c.category || '')}${rel ? ` · ${escapeHtml(rel)}` : ''}</div>
+        </button>`;
+      }).join('');
+      return `<section class="cluster-day-block" data-day-block="${day}">
+        <h3 class="cluster-day-heading">Day${n} · ${kind}${theme ? ` · ${escapeHtml(theme)}` : ''}</h3>
+        <div class="grid">${tiles}</div>
+      </section>`;
+    }).join('');
+  }
+
+  panel.innerHTML = `<p class="muted">言い換えクラスタを学習日の割当に沿って表示（模擬日の試験セット全体への機械割当なし）。</p>
+    ${selectHtml}
+    ${body}`;
+  panel.querySelector('#cluster-day').onchange = (e) => {
+    const v = e.target.value;
+    go('exams', v === 'all' ? { view: 'cluster' } : { view: 'cluster', day: Number(v) }, { replace: true });
+  };
+  panel.querySelectorAll('[data-cl]').forEach((b) =>
+    b.onclick = () => go('exams', { ...listQuery(), cluster: b.dataset.cl }),
+  );
 }
+
 
 function qTile(q, state) {
   const st = state.questions[q.id];

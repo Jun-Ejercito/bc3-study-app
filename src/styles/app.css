@@ -94,3 +94,11 @@ textarea.export { width: 100%; min-height: 8rem; font-family: ui-monospace, mono
   border: 1.5px solid var(--g3); background: #fff; color: var(--g2);
   font-size: .95rem; font-weight: 700; line-height: 1; pointer-events: none;
 }
+
+.cluster-day-block { margin: .85rem 0 1.1rem; }
+.cluster-day-heading {
+  color: var(--g1); font-size: .98rem; margin: .2rem 0 .45rem;
+  border-left: 4px solid var(--g3); padding-left: .45rem; font-weight: 700;
+}
+#cluster-day { font: inherit; max-width: min(100%, 22rem); padding: .35rem .5rem;
+  border: 1px solid var(--g5); border-radius: 8px; background: #fff; color: var(--g1); }
