@@ -1,6 +1,7 @@
 import { applyFurigana } from '../lib/furigana.js';
 import { recordCard, saveState } from '../lib/storage.js';
 import { buildRound } from '../lib/scheduler.js';
+import { answerRevealMarkup, bindAnswerReveal } from '../lib/flashReveal.js';
 
 export function renderFlashcards(root, { data, state, refreshChip }) {
   const onlyLearned = state.settings.overallOnlyLearned;
@@ -65,7 +66,7 @@ export function renderFlashcards(root, { data, state, refreshChip }) {
         <div class="row"><span class="badge">${c.type}</span>
           <span class="muted">Day ${c.day ?? '—'} · ${i+1}/${round.length}</span></div>
         <p>${applyFurigana(c.prompt_ja, data.furigana)}</p>
-        <button class="btn" data-flip>タップして答え</button>
+        ${answerRevealMarkup()}
         <div class="reveal-box" hidden data-back>
           <p><strong>${applyFurigana(c.answer_ja, data.furigana)}</strong></p>
           ${c.hints?.length ? `<p class="muted">hints: ${c.hints.join(' / ')}</p>` : ''}
@@ -76,13 +77,10 @@ export function renderFlashcards(root, { data, state, refreshChip }) {
           </div>
         </div>
       </div>`;
-    panel.querySelector('[data-flip]').onclick = () => {
-      revealed = true;
-      panel.querySelector('[data-back]').hidden = false;
-      panel.querySelector('[data-flip]').disabled = true;
-    };
-    panel.querySelectorAll('[data-rate]').forEach((b) => b.onclick = () => {
-      if (!revealed) return;
+    const gate = bindAnswerReveal(panel, { onReveal: () => { revealed = true; } });
+    panel.querySelectorAll('[data-rate]').forEach((b) => b.onclick = (ev) => {
+      ev.stopPropagation();
+      if (!revealed || !gate.revealed()) return;
       recordCard(state, c.id, b.dataset.rate, c.day);
       refreshChip?.();
       i += 1; draw();

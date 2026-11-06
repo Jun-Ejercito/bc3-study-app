@@ -69,3 +69,18 @@ textarea.export { width: 100%; min-height: 8rem; font-family: ui-monospace, mono
   .main { padding: .75rem; }
   .grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Flashcard answer reveal: small outlined 答; zone is the touch target */
+.answer-reveal-zone {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 44px; margin-top: .7rem; padding: 1rem .5rem;
+  cursor: pointer; background: transparent; border: none; border-radius: 10px;
+  -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.answer-reveal-zone:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.answer-emblem {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem; border-radius: 999px;
+  border: 1.5px solid var(--g3); background: #fff; color: var(--g2);
+  font-size: .95rem; font-weight: 700; line-height: 1; pointer-events: none;
+}
