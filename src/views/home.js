@@ -14,7 +14,9 @@ export function renderHome(root, { data, state, go }) {
         <button class="btn" data-go="days">今日の学習 Start a day</button>
         <button class="btn secondary" data-go="flashcards">フラッシュカード</button>
         <button class="btn secondary" data-go="exams">過去問 200問</button>
+        <button class="btn secondary" data-go="auth">ログイン</button>
       </div>
+      <p class="muted">ゲスト学習は従来どおり端末内のみ。クラウド同期はプロジェクト接続後。</p>
     </section>
     <section class="card">
       <h3>Coverage (verified)</h3>

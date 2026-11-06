@@ -11,10 +11,13 @@
     "data": "python3 scripts/build_data.py"
   },
   "devDependencies": {
-    "vite": "^5.4.11",
-    "jsdom": "^25.0.1"
+    "jsdom": "^25.0.1",
+    "vite": "^5.4.11"
   },
   "allowScripts": {
     "esbuild@0.21.5": true
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.109.0"
   }
 }

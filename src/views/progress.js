@@ -25,5 +25,5 @@ export function renderProgress(root, { data, state }) {
           <div class="progress-bar"><span style="width:${(tried/total)*100}%"></span></div>
         </div>`).join('')}
     </div>
-    <p class="muted">Progress is stored in this browser’s localStorage only. Use Settings → Export to back up.</p>`;
+    <p class="muted">Progress uses the active scope (guest or signed-in account key). Signed-in devices sync append-only events when Supabase is connected. Use Settings → Export to back up.</p>`;
 }

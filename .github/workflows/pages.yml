@@ -25,7 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      # Public client keys only (RLS protects data). Never put service_role here.
       - run: npm run build
+        env:
+          VITE_SUPABASE_URL: https://wtgvcdxuxebzgdfrrfbj.supabase.co
+          VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0Z3ZjZHh1eGViemdkZnJyZmJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM5NDQxMjEsImV4cCI6MjEwOTUyMDEyMX0.NrljYSNe2IB2qGHe4AGf7GYs6ITipLvukAYWB8mOe68
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
