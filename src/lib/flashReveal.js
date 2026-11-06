@@ -1,8 +1,22 @@
-/** Understated 答 emblem + generous tappable zone for flashcard answer reveal. */
+/** Understated 答 emblem + compact ◎/△/× rating controls for flashcards. */
 
 export function answerRevealMarkup() {
   return `<div class="answer-reveal-zone" data-flip role="button" tabindex="0" aria-label="答えを表示">
   <span class="answer-emblem" aria-hidden="true">答</span>
+</div>`;
+}
+
+/** Compact self-rate controls. data-rate values unchanged: all | partial | none */
+export function rateButtonsMarkup() {
+  const items = [
+    { rate: 'all', emblem: '◎', label: '全部できた' },
+    { rate: 'partial', emblem: '△', label: '一部できた' },
+    { rate: 'none', emblem: '×', label: 'できなかった' },
+  ];
+  return `<div class="rate-btns" role="group" aria-label="自己評価">
+  ${items.map(({ rate, emblem, label }) =>
+    `<button type="button" class="rate-emblem" data-rate="${rate}" title="${label}" aria-label="${label}"><span class="rate-glyph" aria-hidden="true">${emblem}</span></button>`
+  ).join('')}
 </div>`;
 }
 
@@ -18,7 +32,6 @@ export function bindAnswerReveal(root, { onReveal } = {}) {
 
   const reveal = (ev) => {
     if (revealed) return;
-    // Ignore clicks that originated on rate controls if somehow nested
     const t = ev?.target;
     if (t && typeof t.closest === 'function' && t.closest('[data-rate]')) return;
     revealed = true;
@@ -40,7 +53,6 @@ export function bindAnswerReveal(root, { onReveal } = {}) {
     }
   });
 
-  // Before reveal, swallow rate clicks (defensive if controls were somehow visible)
   root.querySelectorAll('[data-rate]').forEach((b) => {
     b.addEventListener('click', (ev) => {
       if (revealed) return;

@@ -1,7 +1,7 @@
 import { describe, it, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { JSDOM } from 'jsdom';
-import { answerRevealMarkup, bindAnswerReveal } from '../src/lib/flashReveal.js';
+import { answerRevealMarkup, rateButtonsMarkup, bindAnswerReveal } from '../src/lib/flashReveal.js';
 import { readFileSync } from 'node:fs';
 
 function mount() {
@@ -11,7 +11,7 @@ function mount() {
       ${answerRevealMarkup()}
       <div class="reveal-box" hidden data-back>
         <p>answer</p>
-        <button data-rate="all">全部できた</button>
+        ${rateButtonsMarkup()}
       </div>
     </div>
   </body></html>`);
@@ -94,5 +94,53 @@ describe('flash answer reveal emblem', () => {
     assert.match(days, /answerRevealMarkup/);
     assert.match(days, /bindAnswerReveal/);
     assert.doesNotMatch(days, /タップして答え/);
+  });
+});
+
+describe('rate emblem buttons', () => {
+  it('uses ◎ △ × with Japanese aria-label/title; no permanent text labels', () => {
+    const html = rateButtonsMarkup();
+    assert.match(html, /data-rate="all"[^>]*>[\s\S]*◎/);
+    assert.match(html, /data-rate="partial"[^>]*>[\s\S]*△/);
+    assert.match(html, /data-rate="none"[^>]*>[\s\S]*×/);
+    assert.match(html, /aria-label="全部できた"/);
+    assert.match(html, /aria-label="一部できた"/);
+    assert.match(html, /aria-label="できなかった"/);
+    assert.match(html, /title="全部できた"/);
+    assert.match(html, /title="一部できた"/);
+    assert.match(html, /title="できなかった"/);
+    assert.doesNotMatch(html, />全部できた</);
+    assert.doesNotMatch(html, />一部できた</);
+    assert.doesNotMatch(html, />できなかった</);
+    assert.doesNotMatch(html, /class="btn /);
+  });
+
+  it('CSS is compact outlined green on white, min 44px, no red/gold rate colors', () => {
+    const css = readFileSync(new URL('../src/styles/app.css', import.meta.url), 'utf8');
+    assert.match(css, /\.rate-emblem\s*\{[^}]*min-width:\s*44px/s);
+    assert.match(css, /\.rate-emblem\s*\{[^}]*min-height:\s*44px/s);
+    assert.match(css, /\.rate-emblem\s*\{[^}]*background:\s*#fff/s);
+    assert.match(css, /\.rate-emblem\s*\{[^}]*border:\s*1\.5px solid var\(--g3\)/s);
+    assert.match(css, /\.rate-btns\s*\{[^}]*justify-content:\s*center/s);
+    // old status-colored rate rules gone
+    assert.doesNotMatch(css, /\.rate-btns \.none \{[^}]*var\(--red\)/s);
+    assert.doesNotMatch(css, /\.rate-btns \.partial \{[^}]*var\(--gold\)/s);
+    assert.doesNotMatch(css, /\.rate-btns \.all \{[^}]*background:\s*var\(--g1\)/s);
+  });
+
+  it('daily and overall flashcard views use shared rateButtonsMarkup; data-rate keys preserved', () => {
+    const fc = readFileSync(new URL('../src/views/flashcards.js', import.meta.url), 'utf8');
+    const days = readFileSync(new URL('../src/views/days.js', import.meta.url), 'utf8');
+    assert.match(fc, /rateButtonsMarkup/);
+    assert.match(days, /rateButtonsMarkup/);
+    assert.match(fc, /data-rate/);
+    assert.match(days, /data-rate/);
+    assert.doesNotMatch(fc, /全部できた</);
+    assert.doesNotMatch(days, /全部できた</);
+  });
+
+  it('answer 答 emblem preserved alongside rate emblems', () => {
+    assert.match(answerRevealMarkup(), />答</);
+    assert.match(rateButtonsMarkup(), /◎/);
   });
 });

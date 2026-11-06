@@ -52,10 +52,20 @@ h3 { color: var(--g2); margin: 1rem 0 .4rem; font-size: 1.05rem; }
 .tabs button { border: 1px solid var(--g5); background: #fff; color: var(--g1); border-radius: 999px; padding: .4rem .8rem; cursor: pointer; font: inherit; }
 .tabs button[aria-selected="true"] { background: var(--g1); color: #fff; }
 .flash-front, .flash-back { min-height: 10rem; }
-.rate-btns .btn { flex: 1; min-width: 5.5rem; }
-.rate-btns .all { background: var(--g1); }
-.rate-btns .partial { background: #fff; color: var(--g1); border-color: var(--gold); }
-.rate-btns .none { background: #fff; color: var(--red); border-color: var(--red); }
+.rate-btns {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: .55rem; margin-top: .9rem; width: auto;
+}
+.rate-emblem {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; padding: .55rem;
+  border-radius: 999px; border: 1.5px solid var(--g3);
+  background: #fff; color: var(--g2); cursor: pointer;
+  font-family: inherit; line-height: 1; box-shadow: none;
+}
+.rate-emblem:hover { border-color: var(--g2); background: var(--g9); }
+.rate-emblem:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.rate-glyph { font-size: 1.15rem; font-weight: 500; pointer-events: none; }
 .q-image { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; margin: .5rem 0; cursor: zoom-in; }
 .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 1rem; }
 .lightbox img { max-width: 100%; max-height: 100%; background: #fff; }

@@ -1,7 +1,7 @@
 import { applyFurigana } from '../lib/furigana.js';
 import { recordCard, saveState } from '../lib/storage.js';
 import { buildRound } from '../lib/scheduler.js';
-import { answerRevealMarkup, bindAnswerReveal } from '../lib/flashReveal.js';
+import { answerRevealMarkup, rateButtonsMarkup, bindAnswerReveal } from '../lib/flashReveal.js';
 
 export function renderFlashcards(root, { data, state, refreshChip }) {
   const onlyLearned = state.settings.overallOnlyLearned;
@@ -23,7 +23,7 @@ export function renderFlashcards(root, { data, state, refreshChip }) {
         <button type="button" data-mode="due" aria-selected="${mode==='due'}">復習 Due</button>
       </div>
       <label class="row"><input type="checkbox" id="only-learned" ${onlyLearned?'checked':''}/> 触った日のカードだけ (overall)</label>
-      <p class="muted">Self-rate: 全部 / 一部 / できなかった · Unseen first · variant cooldown</p>
+      <p class="muted">Self-rate: ◎ 全部できた · △ 一部できた · × できなかった · Unseen first · variant cooldown</p>
       <div id="fc-panel"></div>`;
     root.querySelectorAll('[data-mode]').forEach((b) => b.onclick = () => { mode = b.dataset.mode; startRound(); });
     root.querySelector('#only-learned').onchange = (e) => {
@@ -70,11 +70,7 @@ export function renderFlashcards(root, { data, state, refreshChip }) {
         <div class="reveal-box" hidden data-back>
           <p><strong>${applyFurigana(c.answer_ja, data.furigana)}</strong></p>
           ${c.hints?.length ? `<p class="muted">hints: ${c.hints.join(' / ')}</p>` : ''}
-          <div class="btn-row rate-btns">
-            <button class="btn all" data-rate="all">全部できた</button>
-            <button class="btn partial" data-rate="partial">一部</button>
-            <button class="btn none" data-rate="none">できなかった</button>
-          </div>
+          ${rateButtonsMarkup()}
         </div>
       </div>`;
     const gate = bindAnswerReveal(panel, { onReveal: () => { revealed = true; } });

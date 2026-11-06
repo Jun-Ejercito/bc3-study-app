@@ -1,5 +1,5 @@
 import { applyFurigana, escapeHtml } from '../lib/furigana.js';
-import { answerRevealMarkup, bindAnswerReveal } from '../lib/flashReveal.js';
+import { answerRevealMarkup, rateButtonsMarkup, bindAnswerReveal } from '../lib/flashReveal.js';
 import { recordQuestion, recordCard, touchDay, saveState } from '../lib/storage.js';
 import { buildRound } from '../lib/scheduler.js';
 import { assetUrl } from '../lib/assets.js';
@@ -203,11 +203,7 @@ function renderDayCards(panel, d, data, state, refreshChip) {
         <div class="reveal-box" hidden data-back>
           <p><strong>${applyFurigana(c.answer_ja, data.furigana)}</strong></p>
           ${c.explanation_ja ? `<p class="muted">${applyFurigana(c.explanation_ja, data.furigana)}</p>` : ''}
-          <div class="btn-row rate-btns">
-            <button class="btn all" data-rate="all">全部できた</button>
-            <button class="btn partial" data-rate="partial">一部できた</button>
-            <button class="btn none" data-rate="none">できなかった</button>
-          </div>
+          ${rateButtonsMarkup()}
         </div>
       </div>`;
     const gate = bindAnswerReveal(panel, { onReveal: () => { revealed = true; } });
